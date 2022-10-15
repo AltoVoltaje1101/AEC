@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
+    <!--<v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -23,10 +23,11 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer>-->
 
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <!--<v-app-bar-nav-icon @click.stop="drawer = !drawer" />-->
+      <v-spacer/>
       <v-btn icon @click.stop="miniVariant = !miniVariant" to="/">INICIO
       </v-btn>
       <v-spacer/>
