@@ -27,13 +27,15 @@
 
     <v-app-bar :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">INICIO
+      <v-btn icon @click.stop="miniVariant = !miniVariant" to="/">INICIO
       </v-btn>
       <v-spacer/>
       <v-btn icon @click.stop="clipped = !clipped">Perfil
       </v-btn>
       <v-spacer/>
-      <v-btn icon @click.stop="fixed = !fixed">Clases
+      <v-btn icon @click.stop="fixed = !fixed" to="clases"
+          router
+          exact>Clases
       </v-btn>
       <v-spacer/>
       <v-toolbar-title v-text="title" />
@@ -88,6 +90,9 @@ export default {
           to: '/inspire',
         },
       ],
+      pagina:{
+        to: '/clases'
+      },
       miniVariant: false,
       right: true,
       rightDrawer: false,
