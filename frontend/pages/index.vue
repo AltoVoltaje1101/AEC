@@ -21,7 +21,6 @@
 import axios from 'axios'
 export default {
   name: 'IndexPage',
-
   methods: {
     guardar(){
       axios.post("https://localhost:4000/save").then((r) => {
