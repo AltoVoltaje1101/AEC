@@ -17,7 +17,8 @@ app.use(morgan('dev')); //ver info de las peticiones que llegan
 app.use(express.urlencoded({extended: false})); //permite entender datos de formularios
 app.use(express.json()); //permite recibir formatos json
 
-app.use("/save", require("./rutas/saveRoutes.js"));
+app.use("/document", require("./rutas/documentRoutes.js"));
+app.use("/courses", require("./rutas/coursesRoutes.js"));
 
 const llavePrivada = fs.readFileSync("private.key");
 const certificado= fs.readFileSync("certificate.crt");
