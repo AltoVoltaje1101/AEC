@@ -9,7 +9,7 @@ const app=express();
 app.use(cors());
 
 //settings
-process.env.port=4000; //establece el puerto 3000
+process.env.port=4000; //establece el puerto 4000
 app.set('json spaces', 2); //da un espaciado a los formatos json
 
 //middlewares
