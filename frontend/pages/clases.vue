@@ -19,7 +19,6 @@ export default {
   }),
   created() {
     this.initialize();
-
   },
   methods: {
     initialize() {
@@ -38,7 +37,7 @@ export default {
         //this.courses = this.courses.map(name =>({name})) 
       ];
       this.convert();
-      console.log("Impreison initialize2")
+      console.log("Impresion initialize2")
       console.log(this.courses)
     },
     convert() {
@@ -51,8 +50,6 @@ export default {
       })
     console.log(this.newCourses)
     }
-
   },
-
 }
 </script>
