@@ -12,22 +12,17 @@ export default {
         align: 'start',
         sortable: false,
         value: 'name',
-      }
+      },
     ],
-    courses: [],
-    newCourses:[]
+    courses: []
   }),
   created() {
     this.initialize();
   },
   methods: {
     initialize() {
-      this.courses = [
-        this.$axios.get("https://localhost:4000/courses").then((r) => {
-          this.courses = r.data.map(value => {
-        return {
-          name: value
-        }
+      this.$axios.get("https://localhost:4000/courses").then((r) => {
+        this.courses = r.data
       })
           console.log("Impresion initialize")
           console.log(this.courses)
@@ -37,7 +32,7 @@ export default {
         //this.courses = this.courses.map(name =>({name})) 
       ];
       this.convert();
-      console.log("Impresion initialize2")
+      console.log("Impreison initialize2")
       console.log(this.courses)
     },
     convert() {
@@ -50,6 +45,8 @@ export default {
       })
     console.log(this.newCourses)
     }
+
   },
+
 }
 </script>

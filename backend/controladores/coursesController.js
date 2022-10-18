@@ -2,6 +2,7 @@
 const { response } = require("express");
 const courses= require("../modelos/classroomModel"); 
 
+//obtiene los cursos de classroom
 const getCourses= function (req, res){
     courses.getCourses()
     .then(r=>{

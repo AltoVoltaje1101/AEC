@@ -2,6 +2,7 @@
 const { response } = require("express");
 const drive= require("../modelos/driveModel"); 
 
+//guardar un documento
 const saveDoc= function (req, res){
     drive.uploadFile()
     .then(r=>{
@@ -10,6 +11,7 @@ const saveDoc= function (req, res){
         res.json("Archivo no guardado");
     });
 };
+//obtiene el URL de un documento
 const getURL= function (req, res){
     const {id}=req.body
     drive.generateURL(id)

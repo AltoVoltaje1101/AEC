@@ -1,12 +1,16 @@
 const fs = require('fs')
 const {google} = require('googleapis')
 
-const clientID ="370567829666-cpfrgg6jr7i6a13d4cqms6geprg8jplf.apps.googleusercontent.com"
-const clientSecret="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"
+//credenciales
+const jsonData= require('../credentials.json'); 
+
+const clientID =jsonData.web.client_id
+const clientSecret=jsonData.web.client_secret
 const redirectURL="https://developers.google.com/oauthplayground"
 const refreshToken="1//04osmi6rBFFWHCgYIARAAGAQSNwF-L9IrrK4jAYBvYZgbcjfQwDB9vLuARPmBsNLrMcpzbgUjjrWabJ9254MHcU8pjvrsfNsCy7o"
 const folderID = '1g1c8AG6lr0M2pEUwUmcnLmFgGj3ME4ne'
 
+//crea el cliente auth
 const oauth2Client=new google.auth.OAuth2(
     clientID,
     clientSecret,
@@ -14,13 +18,16 @@ const oauth2Client=new google.auth.OAuth2(
 )
 oauth2Client.setCredentials({refresh_token: refreshToken})
 
+//crea el cliente de drive
 const drive =google.drive({
     version: 'v3',
     auth: oauth2Client 
 })
 
+//sube un archivo a drive
 const uploadFile =async function(){
     try{
+        //crea el archivo a drive con sus caracteristicas
         const response = await drive.files.create({
             requestBody: {
                 name: "TestPDF",
