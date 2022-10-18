@@ -17,6 +17,7 @@ app.use(morgan('dev')); //ver info de las peticiones que llegan
 app.use(express.urlencoded({extended: false})); //permite entender datos de formularios
 app.use(express.json()); //permite recibir formatos json
 
+//rutas del server
 app.use("/document", require("./rutas/documentRoutes.js"));
 app.use("/courses", require("./rutas/coursesRoutes.js"));
 
