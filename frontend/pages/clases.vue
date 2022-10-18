@@ -18,16 +18,35 @@ export default {
   }),
   created() {
     this.initialize();
-
   },
   methods: {
     initialize() {
       this.$axios.get("https://localhost:4000/courses").then((r) => {
         this.courses = r.data
       })
-    console.log(this.courses)
-    }   
-}
+          console.log("Impresion initialize")
+          console.log(this.courses)
+        }).catch(error => {
+          console.log(error.message);
+        }),
+        //this.courses = this.courses.map(name =>({name})) 
+      ];
+      this.convert();
+      console.log("Impreison initialize2")
+      console.log(this.courses)
+    },
+    convert() {
+      console.log("Impresion convert")
+      console.log(this.courses)
+      this.newCourses = this.courses.map(value => {
+        return {
+          name: value
+        }
+      })
+    console.log(this.newCourses)
+    }
+
+  },
 
 }
 </script>
