@@ -3,16 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 import fs from 'fs'
 
 export default {
-  build: {
-    postcss: {
-      plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-      },
-    },
-  },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: true,
+  ssr: false,
   target:'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -31,9 +23,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/css/main.css',
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -45,8 +35,6 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    '@nuxt/postcss8',
-
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
