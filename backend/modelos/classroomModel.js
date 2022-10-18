@@ -1,8 +1,10 @@
 const {google} = require('googleapis');
 
 //credenciales
-const clientID ="370567829666-cpfrgg6jr7i6a13d4cqms6geprg8jplf.apps.googleusercontent.com"
-const clientSecret="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"
+const jsonData= require('../credentials.json'); 
+
+const clientID =jsonData.web.client_id
+const clientSecret=jsonData.web.client_secret
 const redirectURL="https://developers.google.com/oauthplayground"
 const refreshToken="1//04gqNCB0Wnlv9CgYIARAAGAQSNwF-L9IribBNL6mUc0VE03r4xTzoMgS6oceALvTPHwj5v6YIgy_KTsCGLMiSecGgpNKyv8I_K1Y"
 
@@ -27,7 +29,7 @@ const getCourses = async function(){
         res.data.courses.forEach(curso=>{
           courses.push(curso.name);
         })
-        return courses //regresa los nombre de los cursos
+        return res.data.courses //regresa los nombre de los cursos
           
     }
     catch(error){
