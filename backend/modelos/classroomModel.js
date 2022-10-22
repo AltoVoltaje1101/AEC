@@ -37,15 +37,39 @@ const getCourses = async function(){
     }
 
 }
+//devuelve las tareas de un curso
+const getWorks = async function(courseId,){
+    try{
+        const res = await classroom.courses.courseWork.list({
+            courseId: courseId,
+        });
+        return res.data;
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+//devuelve el trabajo de todos los alumnos
+const getStudentsWorks = async function(courseId, courseWorkId){
+    try{
+        const res = await classroom.courses.courseWork.studentSubmissions.list({
+            courseId: courseId,
+            courseWorkId: courseWorkId
+        })
+        return res.data
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+
 //aun no se prueba
-async function getStudents(){
+const getStudent= async function(userId){
   try{
-      const res = await classroom.students()
-      const courses=[]
-      console.log(res.data)
-      //res.data.courses.forEach(curso=>{
-        //console.log(curso);
-      //})
+    const res = await classroom.userProfiles.get({
+        userId: userId,
+    });
+    return res.data.name;
         
   }
   catch(error){
@@ -53,4 +77,7 @@ async function getStudents(){
   }
 
 }
+module.exports.getStudent=getStudent;
+module.exports.getStudentsWorks=getStudentsWorks;
 module.exports.getCourses=getCourses;
+module.exports.getWorks=getWorks;

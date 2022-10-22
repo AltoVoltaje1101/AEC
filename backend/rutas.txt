@@ -1,0 +1,6 @@
+Tipo    Link                                                Descripcion                         Parametros
+get     https://localhost:4000/courses                      obtiene los cursos                  x
+get     https://localhost:4000/courses/courseWorks          obtiene las tareas                  courseId
+get     https://localhost:4000/courses/courseWork/students  obtiene envios de alumnos           courseId,courseWorkId 
+                                                            calificaciones y el Id de alumnos
+get     https://localhost:4000/courses/student'             obtiene el nombre del alumno        userId

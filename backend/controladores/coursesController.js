@@ -11,6 +11,35 @@ const getCourses= function (req, res){
         res.json("Archivo no guardado");
     });
 };
-
-
+const getWorks= function (req, res){
+    const {courseId}=req.body
+    courses.getWorks(courseId)
+    .then(r=>{
+        res.json(r);
+    }).catch(e=>{
+        res.json("Archivo no guardado");
+    });
+};
+const getStudentsWorks= function (req, res){
+    const {courseId}=req.body
+    const {courseWorkId} = req.body
+    courses.getStudentsWorks(courseId,courseWorkId)
+    .then(r=>{
+        res.json(r);
+    }).catch(e=>{
+        res.json("Archivo no guardado");
+    });
+};
+const getStudent= function (req, res){
+    const {userId}=req.body
+    courses.getStudent(userId)
+    .then(r=>{
+        res.json(r);
+    }).catch(e=>{
+        res.json("Archivo no guardado");
+    });
+};
+module.exports.getStudent=getStudent;
+module.exports.getStudentsWorks=getStudentsWorks;
 module.exports.getCourses = getCourses;
+module.exports.getWorks= getWorks;
