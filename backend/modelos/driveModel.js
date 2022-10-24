@@ -3,6 +3,7 @@ const {google} = require('googleapis')
 
 //credenciales
 const jsonData= require('../credentials.json'); 
+const { route } = require('../rutas/documentRoutes');
 
 const clientID =jsonData.web.client_id
 const clientSecret=jsonData.web.client_secret
@@ -25,22 +26,22 @@ const drive =google.drive({
 })
 
 //sube un archivo a drive
-const uploadFile =async function(){
+const uploadFile =async function(name,mimeType){
+    const route = "./"+name
     try{
         //crea el archivo a drive con sus caracteristicas
         const response = await drive.files.create({
             requestBody: {
-                name: "TestPDF",
+                name: name,
                 parents: [folderID],
-                mimeType: "application/pdf"
+                mimeType: mimeType
             },
             media: {
-                mimeType: "application/pdf",
-                body:  fs.createReadStream('./test.pdf')
+                mimeType: mimeType,
+                body:  fs.createReadStream(route)
             },
         })
-        //console.log(response.data.id)
-        return response.data.id
+        return response.data
     }
     catch(error){
         console.log(error)

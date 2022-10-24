@@ -3,4 +3,6 @@ get     https://localhost:4000/courses                      obtiene los cursos  
 get     https://localhost:4000/courses/courseWorks          obtiene las tareas                  courseId
 get     https://localhost:4000/courses/courseWork/students  obtiene envios de alumnos           courseId,courseWorkId 
                                                             calificaciones y el Id de alumnos
-get     https://localhost:4000/courses/student'             obtiene el nombre del alumno        userId
+get     https://localhost:4000/courses/student              obtiene el nombre del alumno        userId
+get     https://localhost:4000/courses/courseWork           obtiene el trabajo del curso        courseId,courseWorkId
+post    https://localhost:4000/document/evidence            Crea la evidencia y la sube a drive courseId,courseWorkId

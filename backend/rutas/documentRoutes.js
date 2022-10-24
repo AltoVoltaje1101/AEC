@@ -7,6 +7,7 @@ const document= require("../controladores/documentController");
 
 //rutas
 router.post('/save', document.saveDoc); //guardar un archivo en drive
+router.post('/evidence', document.createEvidence);
 router.get('/URL', document.getURL); //obtener su URL
  
 

@@ -82,6 +82,7 @@ async function authorize() {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 const getCourses = async function() {
+  //para todas las funciones debo crear esto 
   const auth = await authorize();
   const classroom = google.classroom({version: 'v1', auth});
   const res = await classroom.courses.list({

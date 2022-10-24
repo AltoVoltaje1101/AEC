@@ -20,6 +20,16 @@ const getWorks= function (req, res){
         res.json("Archivo no guardado");
     });
 };
+const getWork= function (req, res){
+    const {courseId}=req.body
+    const {courseWorkId}=req.body
+    courses.getWork(courseId,courseWorkId)
+    .then(r=>{
+        res.json(r);
+    }).catch(e=>{
+        res.json("Archivo no guardado");
+    });
+};
 const getStudentsWorks= function (req, res){
     const {courseId}=req.body
     const {courseWorkId} = req.body
@@ -43,3 +53,4 @@ module.exports.getStudent=getStudent;
 module.exports.getStudentsWorks=getStudentsWorks;
 module.exports.getCourses = getCourses;
 module.exports.getWorks= getWorks;
+module.exports.getWork= getWork;

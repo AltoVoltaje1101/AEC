@@ -38,10 +38,22 @@ const getCourses = async function(){
 
 }
 //devuelve las tareas de un curso
-const getWorks = async function(courseId,){
+const getWorks = async function(courseId){
     try{
         const res = await classroom.courses.courseWork.list({
             courseId: courseId,
+        });
+        return res.data;
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+const getWork = async function(courseId,courseWorkId){
+    try{
+        const res = await classroom.courses.courseWork.get({
+            courseId: courseId,
+            id: courseWorkId
         });
         return res.data;
     }
@@ -63,7 +75,7 @@ const getStudentsWorks = async function(courseId, courseWorkId){
     }
 }
 
-//aun no se prueba
+//obtiene el nombre del alumno
 const getStudent= async function(userId){
   try{
     const res = await classroom.userProfiles.get({
@@ -81,3 +93,4 @@ module.exports.getStudent=getStudent;
 module.exports.getStudentsWorks=getStudentsWorks;
 module.exports.getCourses=getCourses;
 module.exports.getWorks=getWorks;
+module.exports.getWork=getWork;
