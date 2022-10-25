@@ -27,7 +27,7 @@ const drive =google.drive({
 
 //sube un archivo a drive
 const uploadFile =async function(name,mimeType){
-    const route = "./"+name
+    const route = './'+name
     try{
         //crea el archivo a drive con sus caracteristicas
         const response = await drive.files.create({
