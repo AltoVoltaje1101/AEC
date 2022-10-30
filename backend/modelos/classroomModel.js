@@ -37,6 +37,18 @@ const getCourses = async function(){
     }
 
 }
+const getCourse = async function(courseId){
+    try{
+        const res = await classroom.courses.get({
+            id: courseId,
+          });
+        return res.data
+    }
+    catch(error){
+        console.log(error)
+    }
+
+}
 //devuelve las tareas de un curso
 const getWorks = async function(courseId){
     try{
@@ -94,3 +106,4 @@ module.exports.getStudentsWorks=getStudentsWorks;
 module.exports.getCourses=getCourses;
 module.exports.getWorks=getWorks;
 module.exports.getWork=getWork;
+module.exports.getCourse =getCourse 

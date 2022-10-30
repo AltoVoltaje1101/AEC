@@ -11,6 +11,7 @@ router.get('/courseWorks', courses.getWorks); //obtiene los cursos
 router.get('/courseWork/students', courses.getStudentsWorks); //obtiene los envios de las tareas de los alumnos
 router.get('/student', courses.getStudent)
 router.get('/courseWork', courses.getWork)
+router.get('/course', courses.getCourse)
  
 
 module.exports = router;
