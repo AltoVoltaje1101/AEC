@@ -80,6 +80,14 @@ export default {
       passphrase: "angelagarcia"
     }
 },
+auth: {
+  redirect: {
+    login: '/login',
+    logout: '/',
+    callback: '/login',
+    home: '/'
+  }
+},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
