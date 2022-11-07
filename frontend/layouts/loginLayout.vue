@@ -43,7 +43,7 @@
     {
       handleCredentialResponse(response) 
       {
-      
+        console.log("Si funciona")
         // call your backend API here
         
         // the token can be accessed as: response.credential
