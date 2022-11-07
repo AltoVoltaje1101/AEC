@@ -9,7 +9,6 @@ const clientID =jsonData.web.client_id
 const clientSecret=jsonData.web.client_secret
 const redirectURL="https://developers.google.com/oauthplayground"
 const refreshToken="1//04osmi6rBFFWHCgYIARAAGAQSNwF-L9IrrK4jAYBvYZgbcjfQwDB9vLuARPmBsNLrMcpzbgUjjrWabJ9254MHcU8pjvrsfNsCy7o"
-const folderID = '1g1c8AG6lr0M2pEUwUmcnLmFgGj3ME4ne'
 
 //crea el cliente auth
 const oauth2Client=new google.auth.OAuth2(
@@ -21,7 +20,7 @@ oauth2Client.setCredentials({refresh_token: refreshToken})
 
 //crea el cliente de drive
 const drive =google.drive({
-    version: 'v3',
+    version: 'v2',
     auth: oauth2Client 
 })
 const sheets =google.sheets({
@@ -40,7 +39,7 @@ const createExcel=async function(nombre,alumnos){
         const id=spreadsheet.data.spreadsheetId
         await sheets.spreadsheets.values.append({
             spreadsheetId: id,
-            range: "Hoja 1!A:B",
+            range: "Hoja 1!A:C",
             valueInputOption: "USER_ENTERED",
             insertDataOption: "INSERT_ROWS",
             resource: {
@@ -98,7 +97,40 @@ const generateURL= async function(fileId){
         console.log(error)
     }
 }
+//mueve un archivo a una carpeta especidifcada
+const moveFolder = async function(folderId,fileId,){
+    try{
+        const res = await drive.parents.insert({
+            fileId: fileId,
+            requestBody: {
+                "id": folderId
+            }
+        });
+        return res
+    }
+    catch(error){
+        console,log(error)
+    }
 
+}
+const createPermissions=async function(fileId){
+    try{
+          const res = await drive.permissions.insert({
+            fileId: fileId,
+            requestBody: {
+                'value': "default",
+                'type': "anyone",
+                'role': "writer"
+            }
+          });
+          return res
+    }
+    catch(error){
+        console.log(error)
+    }
+}
+module.exports.createPermissions=createPermissions
+module.exports.moveFolder=moveFolder;
 module.exports.uploadFile=uploadFile;
 module.exports.generateURL=generateURL;
 module.exports.createExcel=createExcel
