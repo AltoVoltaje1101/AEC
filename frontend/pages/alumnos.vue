@@ -42,7 +42,7 @@
     },
     methods: {
       initialize() {
-        this.$axios.get("https://localhost:4000/students").then((r) => {
+        this.$axios.get("https://localhost:4001/students").then((r) => {
           this.courses = r.data
         })
         console.log(this.courses)

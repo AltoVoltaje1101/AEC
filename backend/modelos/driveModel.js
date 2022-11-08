@@ -2,14 +2,13 @@ const fs = require('fs')
 const {google} = require('googleapis')
 
 //credenciales
-const jsonData= require('../credentials.json'); 
-const { route } = require('../rutas/documentRoutes');
+const credenciales= require('../credentials.json'); 
+const token= require('../token.json'); 
 
-const clientID =jsonData.web.client_id
-const clientSecret=jsonData.web.client_secret
+const clientID =credenciales.web.client_id
+const clientSecret=credenciales.web.client_secret
 const redirectURL="https://developers.google.com/oauthplayground"
-const refreshToken="1//04osmi6rBFFWHCgYIARAAGAQSNwF-L9IrrK4jAYBvYZgbcjfQwDB9vLuARPmBsNLrMcpzbgUjjrWabJ9254MHcU8pjvrsfNsCy7o"
-
+const refreshToken=token.refresh_token
 //crea el cliente auth
 const oauth2Client=new google.auth.OAuth2(
     clientID,

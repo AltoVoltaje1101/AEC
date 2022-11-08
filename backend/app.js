@@ -9,7 +9,7 @@ const app=express();
 app.use(cors());
 
 //settings
-process.env.port=4000; //establece el puerto 4000
+process.env.port=4001; //establece el puerto 4000
 app.set('json spaces', 2); //da un espaciado a los formatos json
 
 //middlewares
@@ -20,6 +20,7 @@ app.use(express.json()); //permite recibir formatos json
 //rutas del server
 app.use("/document", require("./rutas/documentRoutes.js"));
 app.use("/courses", require("./rutas/coursesRoutes.js"));
+app.use("/login",require("./rutas/loginRoutes.js"));
 
 const llavePrivada = fs.readFileSync("private.key");
 const certificado= fs.readFileSync("certificate.crt");
