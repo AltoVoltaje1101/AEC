@@ -1,39 +1,46 @@
 <template>
-  <div id="googleButton"></div>
+  <v-app>
+      <div class= "h-screen">
+        <main class= "h-full bg-light dark:bg-dark">
+            <v-toolbar
+      dark
+      height="100"
+      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
+    >
+      <v-toolbar-title>
+        <h1 style="text-align:center">Automatic Evidence Collector</h1>
+      </v-toolbar-title>
+      <br>
+    </v-toolbar>
+      <v-sheet
+        color="black"
+        height="595"
+        width="1300"
+      >
+            <Nuxt />
+      </v-sheet>
+        </main>
+      </div>
+      <v-footer :absolute="!fixed" app>
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
+  </v-app>
 </template>
-<script>
 
+<script>
 export default {
-  mounted() {
-    // initialize Google Sign in  
-    google.accounts.id.initialize({
-      client_id: '173804267674-pus2gnne0k6dvqhtr20qifd77ce8admd.apps.googleusercontent.com',
-        callback: this.handleCredentialResponse, //method to run after user clicks the Google sign in button
-        context: 'signin'
-      })
-    
-    // render button
-    google.accounts.id.renderButton(
-      document.getElementById('googleButton'),
-      { 
-        type: 'standard',
-        size: 'large',
-        text: 'signin_with',
-        shape: 'rectangular',
-        logo_alignment: 'center',
-        width: 250
-      }
-    )
-  },
-  
-  methods: {
-    handleCredentialResponse(response) {
-    console.log(response);
-    
-      // call your backend API here
-      console.log(response.credential)
-      // the token can be accessed as: response.credential
+  name: 'loginLayout',
+  layout: 'empty',
+  data() {
+    return {
+      fixed: false,
     }
   }
 }
 </script>
+
+<style scoped>
+h1 {
+  font-size: 25px;
+}
+</style>

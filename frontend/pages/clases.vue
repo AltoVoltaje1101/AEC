@@ -11,15 +11,11 @@
             <v-card-title class="text-h5">Tareas Classroom</v-card-title>
             <v-data-table :headers="headersTareas" :items="tareas" :items-per-page="5" class="elevation-1">
               <template v-slot:top>
-              <v-toolbar
-                flat
-                >
                 <v-dialog v-model="dialogEvidencia" max-width="700px">
                   <v-card>
                     <v-card-title class="text-h5">Evidencia creada</v-card-title>
                     <v-card-text>
-                      La evidencia se creo exitosamente en su cuenta de drive.
-                      Link: {{link}}
+                      La evidencia se creó exitosamente en su cuenta de drive.
                     </v-card-text> 
                     <v-card-actions>
                      <v-spacer></v-spacer>
@@ -28,14 +24,13 @@
             </v-card-actions>
                   </v-card>
                 </v-dialog>
-              </v-toolbar>
               </template>
               <template v-slot:item.actions="{ item }">
               <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
                 <v-icon
                   @click="generarReporte(item)"
-                  color="green"
+                  color="blue"
                   class="mr-2"
                   v-bind="attrs"
                   v-on="on"
@@ -75,7 +70,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-icon
             @click="verTareas(item)"
-            color="green"
+            color="blue"
             class="mr-2"
             v-bind="attrs"
             v-on="on"
@@ -126,20 +121,18 @@ export default {
 
   },
   methods: {
-    initialize() {
-      this.$axios.get("https://localhost:4001/courses").then((r) => {
-        this.courses = r.data
-      })
+    async initialize() {
+      const res=await this.$axios.get("https://localhost:4001/courses")
+      this.courses = res.data
       console.log(this.courses)
     },
-    verTareas(item){
+    async verTareas(item){
      this.curso=item
-      this.$axios.post('https://localhost:4001/courses/courseWorks',
+      const res=await this.$axios.post('https://localhost:4001/courses/courseWorks',
       {
         "courseId": this.curso.id
-      }).then((r) => {
-        this.tareas=r.data
       })
+      this.tareas=res.data
       this.dialog=true
     },
     async generarEvidencia(item){
@@ -150,10 +143,6 @@ export default {
         "courseWorkId": this.tarea.id
       })
       console.log(data)
-      /*then((r) => {
-        this.link=r.data.spreadsheetUrl
-      })
-      */
       this.dialogEvidencia=true
     },
     generarReporte(item){
