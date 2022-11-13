@@ -25,10 +25,6 @@ const classroom = google.classroom({
 const getCourses = async function(){
     try{
         const res = await classroom.courses.list()
-        const courses=[]
-        res.data.courses.forEach(curso=>{
-          courses.push(curso.name);
-        })
         return res.data.courses //regresa los nombre de los cursos
           
     }
@@ -52,10 +48,11 @@ const getCourse = async function(courseId){
 //devuelve las tareas de un curso
 const getWorks = async function(courseId){
     try{
+        console.log(courseId)
         const res = await classroom.courses.courseWork.list({
             courseId: courseId,
         });
-        return res.data;
+        return res.data.courseWork;
     }
     catch(error){
         console.log(error)

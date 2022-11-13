@@ -97,7 +97,7 @@ const generateURL= async function(fileId){
     }
 }
 //mueve un archivo a una carpeta especidifcada
-const moveFolder = async function(folderId,fileId,){
+const moveFolder = async function(folderId,fileId){
     try{
         const res = await drive.parents.insert({
             fileId: fileId,
@@ -108,7 +108,7 @@ const moveFolder = async function(folderId,fileId,){
         return res
     }
     catch(error){
-        console,log(error)
+        console.log(error)
     }
 
 }

@@ -8,10 +8,6 @@
         <v-card-title class="headline">
           Bienvenido al Sistema de Recolección Automático de Evidencias
         </v-card-title>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" @click="guardar"> Guardar en Drive </v-btn>
-        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
@@ -21,14 +17,5 @@
 import axios from 'axios'
 export default {
   name: 'inicio',
-  methods: {
-    guardar(){
-      axios.post("https://localhost:4000/save").then((r) => {
-        console.log(r.data)
-      }).catch(error => {
-        console.log(error);
-      });
-    }
-  }
 }
 </script>

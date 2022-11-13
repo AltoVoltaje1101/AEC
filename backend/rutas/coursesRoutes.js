@@ -7,11 +7,11 @@ const courses= require("../controladores/coursesController");
 
 //rutas
 router.get('/', courses.getCourses); //obtiene los cursos
-router.get('/courseWorks', courses.getWorks); //obtiene los cursos
-router.get('/courseWork/students', courses.getStudentsWorks); //obtiene los envios de las tareas de los alumnos
-router.get('/student', courses.getStudent)
-router.get('/courseWork', courses.getWork)
-router.get('/course', courses.getCourse)
+router.post('/courseWorks', courses.getWorks); //obtiene los cursos
+router.post('/courseWork/students', courses.getStudentsWorks); //obtiene los envios de las tareas de los alumnos
+router.post('/student', courses.getStudent)
+router.post('/courseWork', courses.getWork)
+router.post('/course', courses.getCourse)
  
 
 module.exports = router;

@@ -22,11 +22,12 @@ const getCourse= function (req, res){
 };
 const getWorks= function (req, res){
     const {courseId}=req.body
+    console.log(req.body)
     courses.getWorks(courseId)
     .then(r=>{
         res.json(r);
     }).catch(e=>{
-        res.json("Archivo no guardado");
+        res.json("Datos erroneos");
     });
 };
 const getWork= function (req, res){

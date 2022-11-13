@@ -1,9 +1,9 @@
 Tipo    Link                                                Descripcion                         Parametros
 get     https://localhost:4001/courses                      obtiene los cursos                  x
-get     https://localhost:4001/courses/courseWorks          obtiene las tareas                  courseId
-get     https://localhost:4001/courses/courseWork/students  obtiene envios de alumnos           courseId,courseWorkId 
+post    https://localhost:4001/courses/courseWorks          obtiene las tareas                  courseId
+post    https://localhost:4001/courses/courseWork/students  obtiene envios de alumnos           courseId,courseWorkId 
                                                             calificaciones y el Id de alumnos
-get     https://localhost:4001/courses/student              obtiene el nombre del alumno        userId
-get     https://localhost:4001/courses/courseWork           obtiene el trabajo del curso        courseId,courseWorkId
+post    https://localhost:4001/courses/student              obtiene el nombre del alumno        userId
+post    https://localhost:4001/courses/courseWork           obtiene el trabajo del curso        courseId,courseWorkId
 post    https://localhost:4001/document/evidence            crea la evidencia y la sube a drive courseId,courseWorkId
 post    https://localhost:4001/login                        inicia sesion                       x

@@ -31,7 +31,7 @@ const createEvidence = async function(courseId,courseWorkId){
         const documento=await drive.createExcel(nombreDocumento,alumnos)
         await drive.createPermissions(documento.spreadsheetId)
         const res= await drive.moveFolder(folderID,documento.spreadsheetId)
-        return res
+        return documento
     }
     catch(error){
         console.log(error)
