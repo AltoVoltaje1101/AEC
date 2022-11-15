@@ -160,6 +160,7 @@ const getStudent= async function(userId){
     const res = await classroom.userProfiles.get({
         userId: userId,
     });
+    console.log(res.data)
     return res.data.name;
         
   }
