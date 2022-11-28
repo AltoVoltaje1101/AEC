@@ -25,7 +25,20 @@ const getURL= function (req, res){
 const createEvidence= function (req, res){
     const {courseId}=req.body
     const {courseWorkId}= req.body
-    document.createEvidence(courseId,courseWorkId)
+    const {token}=req.body
+    document.createEvidence(courseId,courseWorkId,token)
+    .then(r=>{
+        res.json(r);
+    }).catch(e=>{
+        res.json("Archivo no guardado");
+    });
+};
+const createReport= function (req, res){
+    const {courseId}=req.body
+    const {courseWorkId}= req.body
+    const {atributoId}= req.body
+    const {token}=req.body
+    document.createReport(courseId,courseWorkId,atributoId,token)
     .then(r=>{
         res.json(r);
     }).catch(e=>{
@@ -36,3 +49,4 @@ const createEvidence= function (req, res){
 module.exports.createEvidence = createEvidence;
 module.exports.saveDoc = saveDoc;
 module.exports.getURL = getURL;
+module.exports.createReport=createReport

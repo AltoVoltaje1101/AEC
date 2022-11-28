@@ -57,7 +57,10 @@ data: () => ({
 }),
 methods: {
   async login(){
-    await this.$axios.post("https://localhost:4001/login")
+    const res = await this.$axios.post("https://localhost:4001/login")
+    this.$store.commit("SET_TOKEN",res.data.refresh_token);
+    console.log(this.$store.state.token)
+    //console.log(res.data.refresh_token)
     this.dialogAccept=true
 
   },

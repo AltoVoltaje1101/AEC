@@ -4,7 +4,8 @@ const courses= require("../modelos/classroomModel");
 
 //obtiene los cursos de classroom
 const getCourses= function (req, res){
-    courses.getCourses()
+    const {token}=req.body
+    courses.getCourses(token)
     .then(r=>{
         res.json(r);
     }).catch(e=>{
@@ -13,7 +14,8 @@ const getCourses= function (req, res){
 };
 const getCourse= function (req, res){
     const {courseId}=req.body
-    courses.getCourse(courseId)
+    const {token}=req.body
+    courses.getCourse(courseId, token)
     .then(r=>{
         res.json(r);
     }).catch(e=>{
@@ -22,8 +24,8 @@ const getCourse= function (req, res){
 };
 const getWorks= function (req, res){
     const {courseId}=req.body
-    console.log(req.body)
-    courses.getWorks(courseId)
+    const {token}=req.body
+    courses.getWorks(courseId,token)
     .then(r=>{
         res.json(r);
     }).catch(e=>{
@@ -33,7 +35,8 @@ const getWorks= function (req, res){
 const getWork= function (req, res){
     const {courseId}=req.body
     const {courseWorkId}=req.body
-    courses.getWork(courseId,courseWorkId)
+    const {token}=req.body
+    courses.getWork(courseId,courseWorkId, token)
     .then(r=>{
         res.json(r);
     }).catch(e=>{
@@ -43,7 +46,8 @@ const getWork= function (req, res){
 const getStudentsWorks= function (req, res){
     const {courseId}=req.body
     const {courseWorkId} = req.body
-    courses.getStudentsWorks(courseId,courseWorkId)
+    const {token}=req.body
+    courses.getStudentsWorks(courseId,courseWorkId,token)
     .then(r=>{
         res.json(r);
     }).catch(e=>{
@@ -52,16 +56,28 @@ const getStudentsWorks= function (req, res){
 };
 const getStudent= function (req, res){
     const {userId}=req.body
-    courses.getStudent(userId)
+    const {token}=req.body
+    courses.getStudent(userId,token)
     .then(r=>{
         res.json(r);
     }).catch(e=>{
         res.json("Archivo no guardado");
     });
 };
+const getTeacher= function (req, res){
+    const {token}=req.body
+    courses.getTeacher(token)
+    .then(r=>{
+        res.json(r);
+    }).catch(e=>{
+        res.json("Archivo no guardado");
+    });
+};
+
 module.exports.getStudent=getStudent;
 module.exports.getStudentsWorks=getStudentsWorks;
 module.exports.getCourses = getCourses;
 module.exports.getWorks= getWorks;
 module.exports.getWork= getWork;
-module.exports.getCourse=getCourse
+module.exports.getCourse=getCourse;
+module.exports.getTeacher=getTeacher;

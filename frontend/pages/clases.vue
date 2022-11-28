@@ -48,37 +48,6 @@
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
-
-          <v-card>
-            <v-card-title class="text-h5">Tareas Classroom</v-card-title>
-            <v-data-table :headers="headersTareas" :items="tareas" :items-per-page="5" class="elevation-1">
-              <template v-slot:top>
-
-              </template>
-            </v-data-table>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="red" text @click="cerrarTareas">Cerrar</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
-
-        </v-dialog>
-        <v-dialog v-model="dialog2" max-width="700px">
-
-        <v-card>
-            <v-card-title class="text-h5">Alumnos</v-card-title>
-            <v-data-table :headers="headersAlumnos" :items="tareas" :items-per-page="5" class="elevation-1">
-              <template v-slot:top>
-
-              </template>
-            </v-data-table>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="red" text @click="cerrarAlumnos">Cerrar</v-btn>
-              <v-spacer></v-spacer>
-            </v-card-actions>
-          </v-card>
         </v-dialog>
       </v-toolbar>
     </template>
@@ -101,14 +70,6 @@
         </template>
         <span>Tareas</span>
       </v-tooltip>
-      <v-tooltip bottom>
-        <template v-slot:activator="{ on, attrs }">
-          <v-icon @click="verAlumnos(item)" color="green" class="mr-2" v-bind="attrs" v-on="on">
-            mdi-account-multiple
-          </v-icon>
-        </template>
-        <span>Alumnos</span>
-      </v-tooltip>
     </template>
 
   </v-data-table>
@@ -119,7 +80,6 @@ import axios from 'axios'
 export default {
   data: () => ({
     dialog: false,
-    dialog2:false,
     dialogEvidencia: false,
     headers: [
       {
@@ -140,14 +100,6 @@ export default {
       { text: "Estatus", value: "state" },
       { text: 'Actions', value: 'actions', sortable: false },
     ],
-    headersAlumnos: [
-      {
-        text: 'Nombre',
-        align: 'start',
-        sortable: false,
-        value: 'title',
-      }
-    ],
     courses: [],
     tareas: [],
     curso: null,
@@ -160,7 +112,9 @@ export default {
   },
   methods: {
     async initialize() {
-      const res = await this.$axios.get("https://localhost:4001/courses")
+      const res = await this.$axios.post("https://localhost:4001/courses",{
+        "token": this.$store.state.token
+      })
       this.courses = res.data
       console.log(this.courses)
     },
@@ -168,25 +122,19 @@ export default {
       this.curso = item
       const res = await this.$axios.post('https://localhost:4001/courses/courseWorks',
         {
-          "courseId": this.curso.id
+          "courseId": this.curso.id,
+          "token": this.$store.state.token
         })
       this.tareas = res.data
       this.dialog = true
-    },
-    async verAlumnos(item) {
-      this.curso = item
-      const res = await this.$axios.post('https://localhost:4001/courses/courseWorks/student',
-        {
-          "courseId": this.curso.userId
-        })
-      this.dialog2 = true
     },
     async generarEvidencia(item) {
       this.tarea = item
       const data = await this.$axios.post('https://localhost:4001/document/evidence',
         {
           "courseId": this.curso.id,
-          "courseWorkId": this.tarea.id
+          "courseWorkId": this.tarea.id,
+          "token": this.$store.state.token
         })
       console.log(data)
       this.dialogEvidencia = true
@@ -197,9 +145,6 @@ export default {
     cerrarTareas() {
       this.dialog = false
     },
-    cerrarAlumnos() {
-      this.dialog2 = false
-    }
   }
 
 }

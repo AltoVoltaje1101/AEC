@@ -11,12 +11,15 @@
       <v-btn icon @click.stop="miniVariant = !miniVariant" to="inicio">INICIO
       </v-btn>
       <v-spacer/>
-      <v-btn icon @click.stop="clipped = !clipped">Perfil
+      <v-btn icon @click.stop="clipped = !clipped" to="perfil">Perfil
       </v-btn>
       <v-spacer/>
       <v-btn icon @click.stop="fixed = !fixed" to="clases"
           router
           exact>Clases
+      </v-btn>
+      <v-spacer/>
+      <v-btn icon @click.stop="clipped = !clipped" to="atributos">Atributos
       </v-btn>
       <v-spacer/>
       <v-toolbar-title v-text="title" />

@@ -21,6 +21,7 @@ app.use(express.json()); //permite recibir formatos json
 app.use("/document", require("./rutas/documentRoutes.js"));
 app.use("/courses", require("./rutas/coursesRoutes.js"));
 app.use("/login",require("./rutas/loginRoutes.js"));
+app.use("/atributos",require("./rutas/atributosRoutes.js"));
 
 const llavePrivada = fs.readFileSync("private.key");
 const certificado= fs.readFileSync("certificate.crt");

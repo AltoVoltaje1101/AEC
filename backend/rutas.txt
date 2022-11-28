@@ -1,5 +1,5 @@
 Tipo    Link                                                Descripcion                         Parametros
-get     https://localhost:4001/courses                      obtiene los cursos                  x
+post     https://localhost:4001/courses                      obtiene los cursos                  x
 post    https://localhost:4001/courses/courseWorks          obtiene las tareas                  courseId
 post    https://localhost:4001/courses/courseWork/students  obtiene envios de alumnos           courseId,courseWorkId 
                                                             calificaciones y el Id de alumnos

@@ -8,16 +8,14 @@ const clientSecret=credenciales.web.client_secret
 const redirectURL="https://developers.google.com/oauthplayground"
 
 //obtiene los cursos
-const getCourses = async function(){
+const getCourses = async function(token){
     try{
-        const token= require('../token.json');
-        const refreshToken=token.refresh_token
         const oauth2Client=new google.auth.OAuth2(
             clientID,
             clientSecret,
             redirectURL,
         )
-        oauth2Client.setCredentials({refresh_token: refreshToken})
+        oauth2Client.setCredentials({refresh_token: token})
         
         //crea un cliente de classroom
         const classroom = google.classroom({
@@ -33,16 +31,14 @@ const getCourses = async function(){
     }
 
 }
-const getCourse = async function(courseId){
+const getCourse = async function(courseId,token){
     try{
-        const token= require('../token.json');
-        const refreshToken=token.refresh_token
         const oauth2Client=new google.auth.OAuth2(
             clientID,
             clientSecret,
             redirectURL,
         )
-        oauth2Client.setCredentials({refresh_token: refreshToken})
+        oauth2Client.setCredentials({refresh_token: token})
         
         //crea un cliente de classroom
         const classroom = google.classroom({
@@ -60,16 +56,14 @@ const getCourse = async function(courseId){
 
 }
 //devuelve las tareas de un curso
-const getWorks = async function(courseId){
+const getWorks = async function(courseId,token){
     try{
-        const token= require('../token.json');
-        const refreshToken=token.refresh_token
         const oauth2Client=new google.auth.OAuth2(
             clientID,
             clientSecret,
             redirectURL,
         )
-        oauth2Client.setCredentials({refresh_token: refreshToken})
+        oauth2Client.setCredentials({refresh_token: token})
         
         //crea un cliente de classroom
         const classroom = google.classroom({
@@ -86,16 +80,14 @@ const getWorks = async function(courseId){
         console.log(error)
     }
 }
-const getWork = async function(courseId,courseWorkId){
+const getWork = async function(courseId,courseWorkId,token){
     try{
-        const token= require('../token.json');
-        const refreshToken=token.refresh_token
         const oauth2Client=new google.auth.OAuth2(
             clientID,
             clientSecret,
             redirectURL,
         )
-        oauth2Client.setCredentials({refresh_token: refreshToken})
+        oauth2Client.setCredentials({refresh_token: token})
         
         //crea un cliente de classroom
         const classroom = google.classroom({
@@ -113,16 +105,14 @@ const getWork = async function(courseId,courseWorkId){
     }
 }
 //devuelve el trabajo de todos los alumnos
-const getStudentsWorks = async function(courseId, courseWorkId){
+const getStudentsWorks = async function(courseId, courseWorkId,token){
     try{
-        const token= require('../token.json');
-        const refreshToken=token.refresh_token
         const oauth2Client=new google.auth.OAuth2(
             clientID,
             clientSecret,
             redirectURL,
         )
-        oauth2Client.setCredentials({refresh_token: refreshToken})
+        oauth2Client.setCredentials({refresh_token: token})
         
         //crea un cliente de classroom
         const classroom = google.classroom({
@@ -141,16 +131,14 @@ const getStudentsWorks = async function(courseId, courseWorkId){
 }
 
 //obtiene el nombre del alumno
-const getStudent= async function(userId){
+const getStudent= async function(userId,token){
   try{
-        const token= require('../token.json');
-        const refreshToken=token.refresh_token
         const oauth2Client=new google.auth.OAuth2(
             clientID,
             clientSecret,
             redirectURL,
         )
-        oauth2Client.setCredentials({refresh_token: refreshToken})
+        oauth2Client.setCredentials({refresh_token: token})
         
         //crea un cliente de classroom
         const classroom = google.classroom({
@@ -169,9 +157,32 @@ const getStudent= async function(userId){
   }
 
 }
+const getTeacher= async function(token){
+    try{
+          const oauth2Client=new google.auth.OAuth2(
+              clientID,
+              clientSecret,
+              redirectURL,
+          )
+          oauth2Client.setCredentials({refresh_token: token})
+          const drive =google.drive({
+            version: 'v2',
+            auth: oauth2Client 
+        })
+        const res = await drive.about.get({});
+        console.log(res.data.user);
+        return res.data.user
+          
+    }
+    catch(error){
+        console.log(error)
+    }
+  
+  }
 module.exports.getStudent=getStudent;
 module.exports.getStudentsWorks=getStudentsWorks;
 module.exports.getCourses=getCourses;
 module.exports.getWorks=getWorks;
 module.exports.getWork=getWork;
-module.exports.getCourse =getCourse 
+module.exports.getCourse =getCourse;
+module.exports.getTeacher=getTeacher;
